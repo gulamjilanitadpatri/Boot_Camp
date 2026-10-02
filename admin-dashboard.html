@@ -1,0 +1,117 @@
+<!-- Administrator dashboard for managing students, tests, results, attendance, and academic years. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Python Boot Camp</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page">
+  <header class="topbar">
+    <a class="brand" href="admin-dashboard.html"><img src="logo_final.jpeg" alt="College Logo"><span>Boot Camp Admin</span></a>
+    <div class="user-nav"><span>Administrator</span><button class="ghost-btn" id="logoutBtn">Logout</button></div>
+  </header>
+
+  <main class="dashboard">
+    <section class="welcome admin-welcome">
+      <div><span class="eyebrow">ADMIN CONTROL CENTER</span><h1>Manage the Boot Camp</h1><p>Create Test 1, Test 2, Test 3…, add questions, and manage attendence</p></div>
+      <div class="admin-icon">⚙</div>
+    </section>
+
+    <section class="admin-layout">
+      <aside class="panel admin-menu">
+        <button class="side-btn active" data-section="create">＋ Create Test</button>
+        <button class="side-btn" data-section="questions">＋ Add Questions</button>
+        <button class="side-btn" data-section="tests">Tests</button>
+        <button class="side-btn" data-section="students">Students</button>
+        <button class="side-btn" data-section="academic">Academic Year & Shift</button>
+        <button class="side-btn" data-section="attendance">Attendance</button>
+        <button class="side-btn" data-section="results">Results</button>
+      </aside>
+
+      <section class="admin-content">
+        <div id="section-create" class="admin-section active">
+          <div class="panel"><div class="panel-head"><h2>Create Aptitude Test</h2><span class="pill">Test 1…N</span></div>
+            <form id="createTestForm" class="form-grid">
+              <label>Test ID<input id="testId" placeholder="TEST-001" required></label>
+              <label>Test Name<input id="testName" placeholder="Aptitude Test 1" required></label>
+              <label class="full-field">Description<input id="testDescription" placeholder="Basic Python aptitude test"></label>
+              <label>Duration (minutes)<input id="duration" type="number" min="1" value="20" required></label>
+              <label>Marks / Question<input id="marksPerQuestion" type="number" min="1" value="1" required></label>
+              <label>Start Date<input id="startDate" type="date"></label>
+              <label>End Date<input id="endDate" type="date"></label>
+              <label>Status<select id="testStatus"><option>Active</option><option>Draft</option><option>Closed</option></select></label>
+              <button class="btn primary full full-field" type="submit">Create Test</button>
+            </form>
+            <div id="createStatus" class="status"></div>
+          </div>
+        </div>
+
+        <div id="section-questions" class="admin-section">
+          <div class="panel"><div class="panel-head"><h2>Add Question</h2></div>
+            <form id="questionForm" class="form-grid">
+              <label>Test ID<input id="qTestId" placeholder="TEST-001" required></label>
+              <label>Question ID<input id="questionId" placeholder="Q001" required></label>
+              <label class="full-field">Question<textarea id="question" rows="3" required></textarea></label>
+              <label>Option A<input id="optionA" required></label><label>Option B<input id="optionB" required></label>
+              <label>Option C<input id="optionC" required></label><label>Option D<input id="optionD" required></label>
+              <label>Correct Answer<select id="correctAnswer"><option>A</option><option>B</option><option>C</option><option>D</option></select></label>
+              <label>Marks<input id="qMarks" type="number" min="1" value="1" required></label>
+              <button class="btn primary full full-field" type="submit">Add Question</button>
+            </form>
+            <div id="questionStatus" class="status"></div>
+          </div>
+        </div>
+
+        <div id="section-tests" class="admin-section">
+          <div class="panel"><div class="panel-head"><h2>All Aptitude Tests</h2></div><div id="adminTests" class="admin-list"></div></div>
+        </div>
+
+        <div id="section-students" class="admin-section">
+          <div class="panel"><div class="panel-head"><h2>Registered Students</h2></div><div id="students" class="results-table-wrap"></div></div>
+        </div>
+
+
+        <div id="section-academic" class="admin-section">
+          <div class="panel">
+            <div class="panel-head"><div><h2>Academic Year & Student Shift</h2><p class="muted">Move a student from FY → SY → TY. The roll number is moved automatically.</p></div><span class="pill">Admin</span></div>
+            <form id="shiftStudentForm" class="form-grid">
+              <label class="full-field">Student Email<input id="shiftStudentEmail" type="email" placeholder="student@example.com" required></label>
+              <label>Academic Year<input id="adminAcademicYear" placeholder="2026-27"></label>
+              <button class="btn primary" type="submit">Shift Student</button>
+              <button class="btn danger" type="button" id="deleteBTechRollBtn">Delete B-Tech Roll</button>
+            </form>
+            <div id="shiftStatus" class="status"></div>
+          </div>
+          <div class="panel"><div class="panel-head"><h2>Students & Academic Details</h2></div><div id="academicStudents" class="results-table-wrap"></div></div>
+        </div>
+
+        <div id="section-attendance" class="admin-section">
+          <div class="panel">
+            <div class="panel-head"><div><h2>Daily Attendance</h2>
+              <p class="muted">Select the students who are present. Everyone else will automatically be marked Absent.</p>
+            </div><span class="pill">Checkbox Attendance</span></div>
+            <div class="form-grid">
+              <label>Date<input id="attendanceDate" type="date" required></label>
+            </div>
+            <div id="attendanceChecklist" class="attendance-checklist"><div class="loading">Loading students…</div></div>
+            <button class="btn primary full" id="saveAttendanceBtn" type="button">Save Attendance</button>
+            <div id="attendanceStatusMessage" class="status"></div>
+          </div>
+          <div class="panel"><div class="panel-head"><h2>Attendance Records</h2></div>
+            <div id="adminAttendance" class="results-table-wrap"><div class="loading">Loading attendance…</div></div>
+          </div>
+        </div>
+
+        <div id="section-results" class="admin-section">
+          <div class="panel"><div class="panel-head"><h2>Highest Scorers</h2><span class="pill">After Test</span></div><div id="adminLeaderboard" class="results-table-wrap"></div></div>
+          <div class="panel"><div class="panel-head"><h2>All Test Results</h2></div><div id="adminResults" class="results-table-wrap"></div></div>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

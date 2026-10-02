@@ -1,0 +1,104 @@
+PYTHON BOOT CAMP — GOOGLE SHEET STRUCTURE
+
+IMPORTANT: Use the SAME Google Spreadsheet. Do not create a new spreadsheet.
+
+Create these EXACT sheet tabs:
+
+1) Registration
+A1 Timestamp
+B1 Name
+C1 Email
+D1 Mobile
+E1 FYRoll
+F1 SYRoll
+G1 TYRoll
+H1 BTechRoll
+I1 Department
+J1 Year
+K1 AcademicYear
+L1 Division
+M1 College
+N1 Password
+
+The system automatically migrates an older Registration sheet and preserves existing student data.
+
+2) Admin
+A1 Timestamp
+B1 Email
+C1 Password
+D1 Name
+
+Add one admin row (the Password cell is the current admin password; forgot password overwrites this same cell):
+A2 = current date/time
+B2 = your admin email
+C2 = your admin password
+D2 = Admin
+
+3) AptitudeTests
+A1 TestID
+B1 TestName
+C1 Description
+D1 DurationMinutes
+E1 MarksPerQuestion
+F1 StartDate
+G1 EndDate
+H1 Status
+I1 CreatedAt
+
+4) AptitudeQuestions
+A1 QuestionID
+B1 TestID
+C1 Question
+D1 OptionA
+E1 OptionB
+F1 OptionC
+G1 OptionD
+H1 CorrectAnswer
+I1 Marks
+
+5) TestResults
+A1 Timestamp
+B1 ResultID
+C1 TestID
+D1 TestName
+E1 StudentEmail
+F1 StudentName
+G1 TotalQuestions
+H1 Attempted
+I1 Correct
+J1 Wrong
+K1 Score
+L1 MaxScore
+M1 Percentage
+N1 TimeTaken
+
+6) Attendance
+A1 Timestamp
+B1 Date
+C1 StudentEmail
+D1 StudentName
+E1 Status
+
+Attendance Status values:
+Present
+Absent
+Late
+
+FEATURES
+- Admin creates Test 1, Test 2, Test 3…
+- Admin adds questions to each test.
+- Student dashboard displays all active aptitude tests.
+- A student can submit each aptitude test only once.
+- Marks are calculated automatically and saved in TestResults.
+- Admin selects present students using checkboxes; all remaining students are automatically marked Absent.
+- Admin can view all attendance records.
+- Student dashboard displays only that student's attendance records and attendance percentage.
+- The dashboard loads aptitude tests, results, and attendance independently so one failed section does not hide the others.
+- Code.gs automatically creates missing support tabs with the correct headers. Registration data is not deleted or replaced.
+
+
+TEST RESULT LEADERBOARD
+- Every submitted test is saved in TestResults automatically.
+- Highest scorer is calculated automatically after each submission.
+- Admin Dashboard > Results shows highest scorer(s) for each conducted test and all detailed results.
+- Main Dashboard (index.html) shows only Student Name and Score; no email, roll, department, mobile, or other student details are exposed.

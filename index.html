@@ -1,0 +1,113 @@
+<!-- Main landing page for the Python Boot Camp. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17125b">
+  <title>Python Boot Camp | V.V.P.I.E.T. Solapur</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <img src="logo_final.jpeg" alt="College Logo">
+      <span>Python Boot Camp</span>
+    </a>
+    <nav>
+      <a href="login.html">Student Login</a>
+      <a class="nav-btn" href="register.html">Register</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <section class="hero-copy">
+      <div class="eyebrow">V.V.P.I.E.T. SOLAPUR</div>
+      <h1>Learn Python.<br><span>Practice. Test. Improve.</span></h1>
+      <p>A fast, simple student platform for Python learning, aptitude tests, automatic evaluation and progress tracking.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="register.html">Join Boot Camp</a>
+        <a class="btn secondary" href="login.html">Student Login</a>
+      </div>
+      <div class="mini-stats">
+        <div><strong>Python</strong><small>Learning</small></div>
+        <div><strong>Test 1…N</strong><small>Aptitude</small></div>
+        <div><strong>Auto</strong><small>Results</small></div>
+      </div>
+    </section>
+
+    <section class="panel leaderboard-public" style="margin: 28px auto; max-width: 1100px; width: calc(100% - 32px);">
+      <div class="panel-head">
+        <div><span class="eyebrow">TEST RESULTS</span><h2>Highest Test Scores</h2><p class="muted">Only student name and score are shown.</p></div>
+        <span class="pill">Leaderboard</span>
+      </div>
+      <div id="publicLeaderboard" class="results-table-wrap"><div class="loading">Loading highest scores…</div></div>
+    </section>
+
+    <section class="hero-card">
+      <img class="python-mark" src="python.png" alt="Python">
+      <div class="hero-card-content">
+        <span class="pill">Student Platform</span>
+        <h2>One dashboard for the Boot Camp</h2>
+        <p>Students register, learn, attempt available tests and instantly see their scores.</p>
+        <div class="feature-list">
+          <div>✓ Student registration & login</div>
+          <div>✓ Multiple aptitude tests</div>
+          <div>✓ Automatic marks calculation</div>
+          <div>✓ Admin question management</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="section">
+    <div class="section-heading">
+      <span class="eyebrow">HOW IT WORKS</span>
+      <h2>Simple from start to result</h2>
+    </div>
+    <div class="steps">
+      <article><b>01</b><h3>Register</h3><p>Enter student details and create an account.</p></article>
+      <article><b>02</b><h3>Login</h3><p>Open your personal student dashboard.</p></article>
+      <article><b>03</b><h3>Take Tests</h3><p>Attempt Test 1, Test 2, Test 3 and more.</p></article>
+      <article><b>04</b><h3>View Results</h3><p>Marks are calculated automatically after submission.</p></article>
+    </div>
+  </section>
+
+  <footer>© 2026 Python Boot Camp · V.V.P.I.E.T. Solapur</footer>
+  <script src="config.js"></script>
+  <script>
+    async function loadPublicLeaderboard() {
+      const box = document.getElementById("publicLeaderboard");
+      if (!box) return;
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: {"Content-Type":"text/plain;charset=utf-8"},
+          body: JSON.stringify({action:"getLeaderboard"})
+        });
+        const data = await response.json();
+        if (!data.success || !data.leaderboard || !data.leaderboard.length) {
+          box.innerHTML = '<div class="empty">No test results yet.</div>';
+          return;
+        }
+        box.innerHTML = data.leaderboard.map(test => `
+          <div style="margin-bottom:22px">
+            <h3>${escapeHtml(test.testName || test.testId || "Test")}</h3>
+            <table>
+              <thead><tr><th>Student Name</th><th>Score</th></tr></thead>
+              <tbody>${test.students.map(s => `<tr><td>${escapeHtml(s.studentName)}</td><td><strong>${Number(s.score || 0)}</strong></td></tr>`).join("")}</tbody>
+            </table>
+          </div>
+        `).join("");
+      } catch (error) {
+        box.innerHTML = '<div class="empty">Unable to load test results.</div>';
+      }
+    }
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[c]));
+    }
+    loadPublicLeaderboard();
+  </script>
+</body>
+</html>
