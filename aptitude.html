@@ -1,0 +1,29 @@
+<!-- Test page where a student answers questions and submits the test. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aptitude Test | Python Boot Camp</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page">
+  <header class="topbar">
+    <a class="brand" href="dashboard.html"><img src="logo_final.jpeg" alt="College Logo"><span>Python Boot Camp</span></a>
+    <div class="timer-box">Time left: <strong id="timer">--:--</strong></div>
+  </header>
+  <main class="exam-page">
+    <section class="exam-header panel">
+      <div><span class="eyebrow">APTITUDE TEST</span><h1 id="testTitle">Loading…</h1><p id="testDescription" class="muted"></p></div>
+      <div class="exam-stat"><strong id="questionCount">0</strong><span>Questions</span></div>
+    </section>
+    <form id="examForm">
+      <div id="questions"></div>
+      <button class="btn primary submit-test" type="submit">Submit Test</button>
+    </form>
+    <div id="status" class="status"></div>
+  </main>
+  <script src="config.js"></script>
+  <script src="aptitude.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!-- Admin password reset page. -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forgot Password | Admin</title><link rel="stylesheet" href="style.css"></head>
+<body class="auth-page"><main class="auth-shell"><a class="back-link" href="admin.html">← Back to admin login</a>
+<section class="auth-card"><div class="auth-logo"><img src="logo_final.jpeg" alt="College Logo"></div>
+<span class="eyebrow">ADMIN PORTAL</span><h1>Reset Admin Password</h1>
+<p class="muted">Enter the registered admin email and create a new password.</p>
+<form id="adminForgotForm"><label>Admin Email<input id="email" type="email" required></label>
+<label>New Password<input id="newPassword" type="password" minlength="6" required></label>
+<label>Confirm Password<input id="confirmPassword" type="password" minlength="6" required></label>
+<button class="btn primary full" type="submit">Update Password</button><div id="status" class="status"></div></form></section></main>
+<script src="config.js"></script><script src="admin-forgot.js"></script></body></html>

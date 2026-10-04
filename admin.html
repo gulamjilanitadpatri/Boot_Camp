@@ -1,0 +1,30 @@
+<!-- Administrator login page. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | Python Boot Camp</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+  <main class="auth-shell">
+    <a class="back-link" href="index.html">← Back to home</a>
+    <section class="auth-card">
+      <div class="auth-logo"><img src="logo_final.jpeg" alt="College Logo"></div>
+      <span class="eyebrow">ADMIN PORTAL</span>
+      <h1>Admin Login</h1>
+      <p class="muted">Manage students, tests, questions and results.</p>
+      <form id="adminLoginForm">
+        <label>Email<input type="email" id="email" required></label>
+        <label>Password<input type="password" id="password" required></label>
+        <button class="btn primary full" type="submit">Admin Login</button>
+        <div id="status" class="status"></div>
+        <p class="switch"><a href="admin-forgot.html">Forgot Password?</a></p>
+      </form>
+    </section>
+  </main>
+  <script src="config.js"></script>
+  <script src="admin-login.js"></script>
+</body>
+</html>

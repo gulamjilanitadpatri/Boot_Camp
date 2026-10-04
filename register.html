@@ -1,0 +1,50 @@
+<!-- Student registration page. Class selection controls the roll-number field. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Python Boot Camp</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+  <main class="auth-shell wide">
+    <a class="back-link" href="index.html">← Back to home</a>
+    <section class="auth-card">
+      <div class="auth-logo"><img src="logo_final.jpeg" alt="College Logo"></div>
+      <span class="eyebrow">PYTHON BOOT CAMP</span>
+      <h1>Create student account</h1>
+      <p class="muted">V.V.P.I.E.T. Solapur</p>
+
+      <form id="registerForm" class="form-grid">
+        <label>Name<input id="name" required></label>
+        <label>Email<input id="email" type="email" required></label>
+        <label>Mobile<input id="mobile" inputmode="numeric" maxlength="10" required></label>
+        <label>Class
+          <select id="className" required>
+            <option value="">Select Class</option>
+            <option value="FY">FY</option>
+            <option value="SY">SY</option>
+            <option value="TY">TY</option>
+            <option value="B-Tech">B-Tech</option>
+          </select>
+        </label>
+        <label id="rollFieldLabel">Student Roll Number<input id="studentRoll" placeholder="Select class first" required></label>
+        <label>Department<input id="department" required></label>
+        <label>Academic Year<input id="academicYear" placeholder="2026-27" required></label>
+        <label>Year
+          <select id="year" required><option value="">Select</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option></select>
+        </label>
+        <label>Division<input id="division" required></label>
+        <label>College<input id="college" value="V.V.P.I.E.T. Solapur" readonly></label>
+        <label class="full-field">Password<input id="password" type="password" minlength="6" required></label>
+        <button class="btn primary full full-field" type="submit">Create Account</button>
+      </form>
+      <div id="status" class="status"></div>
+      <p class="switch">Already registered? <a href="login.html">Student Login</a></p>
+    </section>
+  </main>
+  <script src="config.js"></script>
+  <script src="register.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!-- Student password reset page. -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forgot Password | Student</title><link rel="stylesheet" href="style.css"></head>
+<body class="auth-page"><main class="auth-shell"><a class="back-link" href="login.html">← Back to login</a>
+<section class="auth-card"><div class="auth-logo"><img src="logo_final.jpeg" alt="College Logo"></div>
+<span class="eyebrow">STUDENT PORTAL</span><h1>Reset Password</h1>
+<p class="muted">Verify your registered email and roll number, then create a new password.</p>
+<form id="studentForgotForm"><label>Email<input id="email" type="email" required></label>
+<label>FY Roll Number<input id="fyRoll" placeholder="If applicable"></label>
+<label>SY Roll Number<input id="syRoll" placeholder="If applicable"></label>
+<label>TY Roll Number<input id="tyRoll" placeholder="If applicable"></label>
+<label>B-Tech Roll Number<input id="btechRoll" placeholder="If applicable"></label>
+<label>New Password<input id="newPassword" type="password" minlength="6" required></label>
+<label>Confirm Password<input id="confirmPassword" type="password" minlength="6" required></label>
+<button class="btn primary full" type="submit">Update Password</button><div id="status" class="status"></div></form></section></main>
+<script src="config.js"></script><script src="student-forgot.js"></script></body></html>

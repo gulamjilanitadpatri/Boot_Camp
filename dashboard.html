@@ -1,0 +1,95 @@
+<!-- Student dashboard. Student details are shown only to the logged-in student. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard | Python Boot Camp</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page">
+  <header class="topbar">
+    <a class="brand" href="dashboard.html"><img src="logo_final.jpeg" alt="College Logo"><span>Python Boot Camp</span></a>
+    <div class="user-nav"><span id="studentName">Student</span><button class="ghost-btn" id="logoutBtn">Logout</button></div>
+  </header>
+  <main class="dashboard">
+    <section class="welcome">
+      <div><span class="eyebrow">STUDENT DASHBOARD</span><h1>Hello, <span id="welcomeName">Student</span> 👋</h1><p>Continue learning and check your available aptitude tests.</p></div>
+      <img src="python.png" alt="Python" class="dash-python">
+    </section>
+
+    <section class="dash-grid">
+      <article class="panel profile-panel">
+        <div class="panel-head"><h2>Personal Details</h2></div>
+        <div id="profile" class="profile-list"></div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head"><h2>Python Learning</h2><span class="pill">Quick Start</span></div>
+        <div class="learning-grid">
+          <div><b>01</b><span>Python Basics</span></div>
+          <div><b>02</b><span>Variables & Data Types</span></div>
+          <div><b>03</b><span>Operators & Conditions</span></div>
+          <div><b>04</b><span>Loops & Functions</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><h2>Aptitude Tests</h2><p class="muted">Tests created by the Boot Camp admin.</p></div></div>
+      <div id="tests" class="test-grid"><div class="loading">Loading tests…</div></div>
+    </section>
+
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>My Attendance</h2>
+          <p class="muted">Attendance records added by the Boot Camp admin.</p>
+        </div>
+      </div>
+
+      <div id="attendanceSummary" class="learning-grid attendance-summary">
+        <div><b>0</b><span>Total Days</span></div>
+        <div><b>0</b><span>Present</span></div>
+        <div><b>0</b><span>Absent</span></div>
+        <div><b>0%</b><span>Attendance</span></div>
+      </div>
+
+      <div id="studentAttendance" class="results-table-wrap">
+        <div class="loading">Loading attendance…</div>
+      </div>
+    </section>
+
+    <section class="panel score-autoplay-panel">
+      <div class="panel-head"><div><h2>Highest Scores — Auto Play</h2><p class="muted">Highest scores from conducted tests rotate automatically and update with the latest results.</p></div><span class="pill">Live Auto Play</span></div>
+      <div id="topPerformer" class="score-carousel"><div class="loading">Loading highest scores…</div></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><h2>My Documents</h2><p class="muted">Download your personal performance report and certificate when approved.</p></div></div>
+      <div class="button-row"><button class="btn secondary" id="downloadPerformancePdfBtn" type="button">Download Performance PDF</button><button class="btn primary" id="downloadCertificateBtn" type="button" disabled>Download Certificate</button></div>
+      <div id="certificateStatus" class="status"></div>
+    </section>
+
+
+    <section class="panel">
+      <div class="panel-head"><div><h2>Student Feedback</h2><p class="muted">Share your Boot Camp experience. Your feedback is private and visible only to the authorized administrator.</p></div><span class="pill">Private</span></div>
+      <form id="feedbackForm" class="form-grid feedback-form">
+        <label>Rating<select id="feedbackRating" required><option value="5">★★★★★ — Excellent</option><option value="4">★★★★☆ — Very Good</option><option value="3">★★★☆☆ — Good</option><option value="2">★★☆☆☆ — Needs Improvement</option><option value="1">★☆☆☆☆ — Poor</option></select></label>
+        <label class="full-field">Feedback<textarea id="feedbackText" rows="5" maxlength="1000" placeholder="Write your feedback here..." required></textarea></label>
+        <button class="btn primary" type="submit">Submit Feedback</button>
+      </form>
+      <div id="feedbackStatus" class="status"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><h2>My Results</h2><p class="muted">Your test performance.</p></div><button class="btn secondary" id="downloadPerformanceBtn" type="button">Download My Performance</button></div>
+      <div id="results" class="results-table-wrap"><div class="loading">Loading results…</div></div>
+    </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="config.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
